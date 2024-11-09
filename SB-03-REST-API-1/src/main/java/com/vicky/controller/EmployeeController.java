@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vicky.entity.Employee;
 import com.vicky.service.EmployeeService;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
 
 @RestController
+@Slf4j
 @RequestMapping("/employee")
 public class EmployeeController {
 
@@ -27,14 +31,14 @@ public class EmployeeController {
 	
 	@GetMapping("/get/{empid}")
 	public Employee getEmployeeById(@PathVariable("empid") Integer empid) {
-		System.out.println("hello");
-		System.out.println(empid);
+		log.info("getEmployeeById " + empid);
 		return employeeService.getEmployee(empid);
 		
 	}
 	
 	@PostMapping("/add")
 	public Employee addEmployee(@RequestBody Employee employee) {
+		log.info("addEmployee " + employee.getId());
 		return employeeService.addEmployee(employee);
 	}
 	

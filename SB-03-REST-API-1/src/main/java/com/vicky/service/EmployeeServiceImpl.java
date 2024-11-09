@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.vicky.entity.Employee;
 import com.vicky.repos.EmployeeRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	
@@ -23,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee getEmployee(Integer empid) {
 		System.out.println(empid);
-		return employeeRepository.findById(empid).get();
+		return employeeRepository.findById(empid).orElseThrow(()-> new EntityNotFoundException("Employee not found"));
 	}
 
 	@Override
