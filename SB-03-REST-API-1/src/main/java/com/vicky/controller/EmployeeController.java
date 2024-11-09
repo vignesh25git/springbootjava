@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vicky.entity.Employee;
 import com.vicky.service.EmployeeService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
 
-//this is to test	
 	@Autowired
 	private EmployeeService employeeService;
 	
@@ -30,5 +32,11 @@ public class EmployeeController {
 		return employeeService.getEmployee(empid);
 		
 	}
+	
+	@PostMapping("/add")
+	public Employee addEmployee(@RequestBody Employee employee) {
+		return employeeService.addEmployee(employee);
+	}
+	
 
 }
