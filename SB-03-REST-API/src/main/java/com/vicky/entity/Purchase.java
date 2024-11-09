@@ -30,7 +30,6 @@ public class Purchase {
 	private String manufacturer;
 	private float prize;
 	private Integer warranty;
-	//test
 	
 	
 	
