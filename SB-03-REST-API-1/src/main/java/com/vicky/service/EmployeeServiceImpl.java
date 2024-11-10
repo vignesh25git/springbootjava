@@ -29,21 +29,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee deleteEmployee(Integer empid) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteEmployee(Integer empid) {
+		//employeeRepository.deleteById(empid); -> one way of delete
+		
+		if (employeeRepository.existsById(empid)) {
+			employeeRepository.deleteById(empid);
+		} else {
+			throw new EntityNotFoundException("User not found for Deleting..." + empid);
+		}
 	}
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+		return employeeRepository.findAll();
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee) {
+	public Employee updateEmployee(Integer empid,Employee employee) {
 		// TODO Auto-generated method stub
-		return null;
+		return employeeRepository.findById(empid).map(emp -> {
+			emp.setAge(employee.getAge());
+			emp.setDob(employee.getDob());
+			emp.setId(employee.getId());
+			emp.setName(employee.getName());
+			emp.setSalary(employee.getSalary());
+			return employeeRepository.save(emp);
+		}).orElseThrow(()-> new EntityNotFoundException("Employee not found"));
 	}
 
 	

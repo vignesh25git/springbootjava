@@ -11,8 +11,8 @@ public interface EmployeeService {
 	
 	public Employee addEmployee(Employee employee);
 	public Employee getEmployee(Integer empid);
-	public Employee deleteEmployee(Integer empid);
+	public void deleteEmployee(Integer empid);
 	public List<Employee> getAllEmployees();
-	public Employee updateEmployee(Employee employee);
+	public Employee updateEmployee(Integer empid,Employee employee);
 	
 }
